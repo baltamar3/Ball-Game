@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public Text lifesText;
     public Text timeText;
     public GameObject startPoint;
+    bool pause = false;
     int gems = 0;
     int lifes = 3;
     float totalTime = 120;
@@ -27,7 +28,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        CountDown();
+        if (!pause){
+            CountDown();
+        }
         movVertical = Input.GetAxis("Vertical");
         movHorizontal = Input.GetAxis("Horizontal");
         print(movHorizontal);
@@ -71,5 +74,10 @@ public class PlayerController : MonoBehaviour
         int min = Mathf.FloorToInt(totalTime/60f);
         int sec = Mathf.FloorToInt(totalTime-(min*60f));
         timeText.text = string.Format("{0:0}:{01:00}",min,sec);
+    }
+
+    public void PauseGame(){
+        pause = !pause;
+        rb.isKinematic = pause;
     }
 }
