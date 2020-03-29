@@ -11,8 +11,11 @@ public class PlayerController : MonoBehaviour
     public bool isJump = false;
     public Text gemsText;
     public Text lifesText;
+    public Text timeText;
+    public GameObject startPoint;
     int gems = 0;
     int lifes = 3;
+    float totalTime = 120;
 
     private Rigidbody rb;
     // Start is called before the first frame update
@@ -24,6 +27,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        CountDown();
         movVertical = Input.GetAxis("Vertical");
         movHorizontal = Input.GetAxis("Horizontal");
         print(movHorizontal);
@@ -54,5 +58,18 @@ public class PlayerController : MonoBehaviour
                 gems += 1;
                 gemsText.text ="0"+gems.ToString();
             }
+            if (collider.gameObject.name == "DeadZone")
+            {
+                transform.position = startPoint.transform.position;
+                lifes -= 1;
+                lifesText.text = "0" + lifes.ToString();
+            }
+    }
+
+    void CountDown(){
+        totalTime -= Time.deltaTime;
+        int min = Mathf.FloorToInt(totalTime/60f);
+        int sec = Mathf.FloorToInt(totalTime-(min*60f));
+        timeText.text = string.Format("{0:0}:{01:00}",min,sec);
     }
 }
