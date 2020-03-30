@@ -561,7 +561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &361991303
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4407,7 +4407,7 @@ GameObject:
   m_Layer: 5
   m_Name: StartPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5082,8 +5082,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1719409477}
-        m_MethodName: GoBack
+      - m_Target: {fileID: 1785449151}
+        m_MethodName: RestardGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5093,8 +5093,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1785449151}
-        m_MethodName: RestardGame
+      - m_Target: {fileID: 1719409477}
+        m_MethodName: GoBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5451,7 +5451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 1
-  altitud: 80
+  altitud: 60
   isJump: 0
   gemsText: {fileID: 441383207}
   lifesText: {fileID: 1558381263}
@@ -6096,7 +6096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b9cb6abd86b0af442b58106bea0f3ebe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.7
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b9cb6abd86b0af442b58106bea0f3ebe, type: 3}
       propertyPath: m_LocalPosition.y

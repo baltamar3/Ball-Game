@@ -17,12 +17,13 @@ public class PlayerController : MonoBehaviour
     public GameObject startPoint;
     public GameObject panelGameOver;
     public GameObject panelCongratulations;
-     public GameObject uiMobile;
+    public GameObject uiMobile;
     public MenuManager menuManager;
     public AudioSource audioPlayer;
     public AudioClip poinSound, jumpSound, deadSound;
     public bl_Joystick joistick;
     bool pause = false;
+    bool isGoal = false;
     int gems = 0;
     int lifes = 3;
     float totalTime = 120;
@@ -31,8 +32,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         #if UNITY_ANDROID
-            uiMobile.SetActivate(true);
+            uiMobile.SetActive(true);
         #endif
 
         rb = GetComponent<Rigidbody>();
@@ -70,7 +72,8 @@ public class PlayerController : MonoBehaviour
             {
                 isJump = false;
             }
-            if (collision.gameObject.name == "Goal"){
+            if ((collision.gameObject.name) == "Goal" && (!isGoal)){
+                isGoal = true;
                 FinishedgGame();
             }
     }
@@ -98,9 +101,7 @@ public class PlayerController : MonoBehaviour
                 GetComponent<AudioSource>().clip = deadSound;
                 GetComponent<AudioSource>().Play();
             }
-            if (collider.gameObject.name == "Goal"){
-                FinishedgGame();
-            }
+            
     }
 
     void GameOver(){
@@ -109,10 +110,13 @@ public class PlayerController : MonoBehaviour
     }
 
     void FinishedgGame(){
-        PauseGame();
-        menuManager.GoToMenu(panelCongratulations);
-        finalLifesText.text = "0" + lifes.ToString();
-        finalGemsText.text = "0" + gems.ToString(); 
+        if (isGoal==true)
+        {
+            // PauseGame();
+            menuManager.GoToMenu(panelCongratulations);
+            finalLifesText.text = "0" + lifes.ToString();
+            finalGemsText.text = "0" + gems.ToString();
+        }
     }
 
     void CountDown(){
@@ -132,6 +136,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void RestardGame(){
+        transform.position = startPoint.transform.position;
         totalTime = 120;
         lifes = 3;
         gems = 0;
@@ -139,6 +144,7 @@ public class PlayerController : MonoBehaviour
         gemsText.text = "00";
         rb.isKinematic = false;
         pause = false;
+        isGoal = false;
     }
 
     public void Jump(){
